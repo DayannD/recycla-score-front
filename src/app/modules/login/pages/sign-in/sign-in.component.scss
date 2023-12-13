@@ -1,0 +1,243 @@
+.container{
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
+}
+
+.right-block{
+  background-color: #131517 ;
+  display: flex;
+  flex-flow: column wrap;
+  flex: 9.6;
+  padding: 3%;
+}
+
+.desktop-align{
+  display: flex;
+  flex-flow: column wrap;
+  flex: 9.6;
+}
+
+.form{
+  flex:9;
+}
+
+.logo-desktop{
+  display:none;
+}
+
+.titre{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  color: #E9E9E9;
+}
+
+.connexion{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  .check{
+    display: flex;
+    align-items: center;
+  }
+  .remember{
+    font-family: 'SF Pro Display';
+    color: #E9E9E9;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    letter-spacing: 0.3px;
+    margin-left: 5px;
+  }
+  .forgot{
+    font-family: 'SF Pro Display';
+    color: #E9E9E9;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    text-align: right;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    color: #007AFF;
+  }
+}
+
+.account{
+  display: flex;
+  justify-content: center;
+  .text{
+    font-family: 'SF Pro Display';
+    color: #E9E9E9;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+    letter-spacing: 0.3px;
+  }
+  .signup{
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    color: #E9E9E9;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+    text-align: right;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    color: #007AFF;
+  }
+}
+
+.logo{
+  display: flex;
+  flex:6;
+  justify-content: center;
+  margin: 62px 0 62px 0;
+  .logo-mobile{
+    display: flex;
+    align-items: center;
+  }
+  .nom-entreprise {
+    display: flex;
+    color: #E9E9E9;
+    align-items: center;
+    margin-left: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.signature{
+  display: flex;
+  flex:0.4;
+  justify-content: space-between;
+  align-items: center;
+  .signature-gauche{
+    display: flex;
+    align-items: center;
+  }
+  .logo-signature{
+    width: 24px;
+    height: 24px;
+  }
+  .insta{
+    padding: 5px;
+    text-decoration: none;
+    color: #007AFF;
+
+    width: 57px;
+    height: 16px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.4px;
+
+    /* System-Blue (#007AFF) */
+
+    color: #007AFF;
+  }
+  .dateCrea{
+    display: flex;
+    align-items: flex-end;
+    justify-content:flex-end;
+    width: 106px;
+    height: 16px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.4px;
+
+    color: #666666;
+  }
+
+}
+
+
+.wrong{
+  height: 16px;
+  color: red;
+  border: red;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.4px;
+
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .container{
+    flex-flow: row wrap;
+  }
+
+  .right-block{
+    flex:9;
+    flex: 3;
+  }
+
+  .logo{
+    display: none;
+  }
+
+  .img {
+    display: flex;
+    flex: 7;
+    background-image: url("/assets/img/background-login.jpg");
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .logo-desktop{
+    display: flex;
+    .logo-top{
+      display: flex;
+      align-items: center;
+    }
+    .nom-entreprise {
+      display: flex;
+      color: #E9E9E9;
+      align-items: center;
+      margin-left: 8px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .signature{
+    flex: 1;
+  }
+}

@@ -1,0 +1,54 @@
+:host{
+  width: 100%;
+  .btn{
+    cursor: pointer;
+    padding: 10px 24px;
+    margin: 24px 0 24px 0;
+    color: white;
+    width: 100%;
+    justify-content: stretch;
+    background: #007aff;
+    border-radius: 6px;
+    border: none;
+    /* Button-label */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .svg{
+    display: none;
+  }
+}
+
+#google{
+  .svg-inline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  background: #333333;
+  .svg{
+    display:block;
+    margin-right: 3px;
+  }
+  .rotate {
+    animation: rotation 5s infinite linear;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+}
