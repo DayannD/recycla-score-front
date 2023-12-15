@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { Auth } from "../../../../core/models/auth/auth";
-import { FormBuilder, FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { InputComponent } from "../../../../shared/input/input.component";
 import { CheckboxComponent } from "../../../../shared/checkbox/checkbox.component";
 import { BtnComponent } from "../../../../shared/btn/btn.component";
 import { NgIf } from "@angular/common";
+import { AuthService } from "../../../../service/auth/auth.service";
+import { catchError, of, tap } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "../../../../shared/dialog/dialog.component";
 
 @Component({
   selector: 'app-sign-in',
@@ -32,29 +36,38 @@ export class SignInComponent {
   });
 
   constructor(
-    // private readonly authService: AuthService,
+    private readonly authService: AuthService,
     private readonly route: Router,
-    private readonly formBuilder: FormBuilder
-  ) {
+    private readonly formBuilder: FormBuilder,
+    public dialog: MatDialog
+  ) {}
 
-  }
   onSubmit() {
-    console.log(this.authForm.value);
-    // this.submitted = true;
-    // if (!f.valid) return;
-    //
-    // this.authService
-    //   .auth(f.value.email, f.value.password)
-    //   .pipe(
-    //     catchError((error) => {
-    //       this.errorMessage = 'Email ou mot de passe invalid';
-    //       return throwError(error);
-    //     })
-    //   )
-    //   .subscribe();
+    if (this.authForm.valid && this.authForm.value.email && this.authForm.value.password) {
+      this.authService
+        .auth(this.authForm.value.email, this.authForm.value.password)
+        .pipe(
+          tap((res) => {
+            this.route.navigate(['/acceuil']);
+          }),
+          catchError((error) => {
+            this.errorMessage = 'Login failed';
+            this.openDialog(this.errorMessage);
+            return of();
+          })
+        ).subscribe();
+    } else {
+      this.errorMessage = 'Email ou mot de passe incorrect';
+      this.openDialog(this.errorMessage);
+    }
   }
 
-  click() {
+  openDialog(message: string) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {message: message}
+    })
 
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

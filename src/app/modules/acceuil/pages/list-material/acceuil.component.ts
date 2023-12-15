@@ -1,7 +1,7 @@
 // src/app/components/acceuil/acceuil.component.ts
 import { Component, OnInit } from '@angular/core';
 import {MonoMaterial} from "../../../../core/models/mono-material/mono-material";
-import {MonoMaterialService} from "../../../../core/services/mono-material/mono-material.service";
+import {MonoMaterialService} from "../../../../service/mono-material/mono-material.service";
 
 @Component({
   selector: 'app-acceuil',

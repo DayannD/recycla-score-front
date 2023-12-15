@@ -1,2 +1,13 @@
 <label [ngClass]="cssLabel">{{ label }}</label>
-<input [type]="type" [name]="name" [(ngModel)]="model" [ngClass]="css">
+@if (isEnum()) {
+  <select class="champ-select" [(ngModel)]="model" >
+    @for (option of enumOptions; track option) {
+      <option [value]="option">{{option}}</option>
+    }
+  </select>
+  <div class="champ-select-arrow">▼</div>
+} @else if (type === 'texterea') {
+  <textarea [name]="name" [(ngModel)]="model" [ngClass]="css"></textarea>
+} @else {
+  <input [type]="type" [name]="name" [(ngModel)]="model" [ngClass]="css">
+}
