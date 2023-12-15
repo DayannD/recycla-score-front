@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { EnumObjectMail } from "../../core/models/enum/enum-object-mail";
 
 @Component({
   selector: 'app-input',
@@ -19,8 +20,13 @@ export class InputComponent {
   @Input() name: string = '';
   @Input() label: string = '';
   @Input() model: string = '';
+  @Input() enumOptions?: string[];
 
   constructor() {
+  }
+
+  isEnum() {
+    return this.type === 'enum';
   }
 }
 

@@ -5,7 +5,11 @@ import { InputComponent } from "../../../../shared/input/input.component";
 import { NgIf } from "@angular/common";
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
-import { Auth } from "../../../../core/models/auth/auth";
+import { catchError, of, tap } from "rxjs";
+import { AuthService } from "../../../../service/auth/auth.service";
+import { Utilisateur } from "../../../../core/models/utilisateur/utilisateur";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "../../../../shared/dialog/dialog.component";
 
 @Component({
   selector: 'app-sign-up',
@@ -22,39 +26,53 @@ import { Auth } from "../../../../core/models/auth/auth";
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  public auth: Auth = new Auth();
+  public user: Utilisateur = new Utilisateur();
   emailControl = new FormControl('', [Validators.required, Validators.email, Validators.minLength(5)]);
   passwordControl = new FormControl('', [Validators.required]);
+  nameUserControl = new FormControl('', [Validators.required]);
   errorMessage!: string;
   authForm = this.formBuilder.group({
     email: this.emailControl,
     password: this.passwordControl,
+    nameUser: this.nameUserControl
   });
 
   constructor(
-    // private readonly authService: AuthService,
+    public dialog: MatDialog,
+    private readonly authService: AuthService,
     private readonly route: Router,
     private readonly formBuilder: FormBuilder
   ) {
 
   }
   onSubmit() {
-    console.log(this.authForm.value);
-    // this.submitted = true;
-    // if (!f.valid) return;
-    //
-    // this.authService
-    //   .auth(f.value.email, f.value.password)
-    //   .pipe(
-    //     catchError((error) => {
-    //       this.errorMessage = 'Email ou mot de passe invalid';
-    //       return throwError(error);
-    //     })
-    //   )
-    //   .subscribe();
+    if (this.authForm.valid && this.authForm.value.email && this.authForm.value.password && this.authForm.value.nameUser) {
+      this.authService
+        .register(this.authForm.value.nameUser, this.authForm.value.email, this.authForm.value.password)
+        .pipe(
+          tap((res) => {
+            this.openDialog('Inscription réussie, un email de confirmation vous a été envoyé');
+            this.route.navigate(['/']);
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.errorMessage = 'Email ou mot de passe incorrect';
+            this.openDialog(this.errorMessage);
+            return of();
+          })
+        ).subscribe();
+    } else {
+      this.errorMessage = 'Email ou mot de passe incorrect';
+    }
   }
 
-  click() {
+  openDialog(message: string): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {message: message}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

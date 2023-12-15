@@ -1,0 +1,33 @@
+<div class="flex h-full">
+  <div class="w-1/2 m-3 mt-40">
+    <h1 class="mb-6 font-bold text-7xl font-noe">Let's Talk</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque eos ipsa quas quis, saepe similique voluptates?
+      Consequatur corporis inventore iure iusto molestiae qui totam voluptate voluptates? Architecto, error, facilis.
+    </p>
+    <h2 class="mt-6 font-bold text-3xl">Email</h2>
+    <p>testgmail.com</p>
+    <h3 class="mt-6 font-bold text-3xl">Socials</h3>
+    <ul>
+      <li><a>facebook</a></li>
+      <li><a>twitter</a></li>
+      <li><a>instagram</a></li>
+    </ul>
+  </div>
+  <div class="items-center w-1/2 m-3 mt-40" >
+    <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+      <div>
+        <app-input [type]="'text'" [css]="'champ'" [label]="'Name'" [model]="mail.name" [formControl]="nameControl" ngDefaultControl></app-input>
+      </div>
+      <div>
+        <app-input [type]="'text'" [css]="'champ'" [label]="'Email'" [model]="mail.email" [formControl]="emailControl" ngDefaultControl></app-input>
+      </div>
+      <div>
+        <app-input [type]="'enum'" [css]="'champ'" [label]="'Objet de votre mail'" [model]="mail.object" [formControl]="objectControl" [enumOptions]="enumOptions" ngDefaultControl></app-input>
+      </div>
+      <div>
+        <app-input [type]="'texterea'" [css]="'texterea'" [label]="'Message'" [model]="mail.message" [formControl]="messageControl" ngDefaultControl></app-input>
+      </div>
+      <app-btn [css]="'black'" [name]="'Submit'"></app-btn>
+    </form>
+  </div>
+</div>

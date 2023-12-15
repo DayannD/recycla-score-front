@@ -53,7 +53,7 @@
             <a routerLink="/forgot-password" class="forgot"><span>Forgot password?</span></a>
             <!-- /********************** btn **********************/ -->
           </div>
-          <app-btn (clickEmitter)="click()" [css]="'btn'" [name]="'Sign in'"></app-btn>
+          <app-btn (clickEmitter)="onSubmit()" [css]="'btn'" [name]="'Sign in'"></app-btn>
         </form>
 
         <hr width="100%" color="#E5E5E5">
