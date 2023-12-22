@@ -28,4 +28,8 @@ export class AuthService {
 
     return !!token;
   }
+
+  public logout() {
+    this.http.post(`${this.urlApi}/deconnexion`, {}, { withCredentials: true },);
+  }
 }

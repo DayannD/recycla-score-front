@@ -14,7 +14,7 @@ import { EnumObjectMail } from "../../../core/models/enum/enum-object-mail";
     ReactiveFormsModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
   public mail = new ContactMail();

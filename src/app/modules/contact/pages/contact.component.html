@@ -1,19 +1,20 @@
-<div class="flex h-full">
-  <div class="w-1/2 m-3 mt-40">
-    <h1 class="mb-6 font-bold text-7xl font-noe">Let's Talk</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque eos ipsa quas quis, saepe similique voluptates?
+<div class="flex h-full font-sans">
+  <div class="w-full m-3 mt-40">
+    <h1 class="mb-6 font-bold text-7xl ">Let's Talk</h1>
+    <p class="max-w-3xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque eos ipsa quas quis, saepe similique voluptates?
       Consequatur corporis inventore iure iusto molestiae qui totam voluptate voluptates? Architecto, error, facilis.
+      lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque eos ipsa quas quis, saepe similique voluptates?
     </p>
-    <h2 class="mt-6 font-bold text-3xl">Email</h2>
-    <p>testgmail.com</p>
+    <h2 class="mt-6 font-bold text-3xl ">Email</h2>
+    <p class="m-3">testgmail.com</p>
     <h3 class="mt-6 font-bold text-3xl">Socials</h3>
     <ul>
-      <li><a>facebook</a></li>
-      <li><a>twitter</a></li>
-      <li><a>instagram</a></li>
+      <li class="m-3"><a>facebook</a></li>
+      <li class="m-3"><a>twitter</a></li>
+      <li class="m-3"><a>instagram</a></li>
     </ul>
   </div>
-  <div class="items-center w-1/2 m-3 mt-40" >
+  <div class="w-full m-3 mt-40">
     <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
       <div>
         <app-input [type]="'text'" [css]="'champ'" [label]="'Name'" [model]="mail.name" [formControl]="nameControl" ngDefaultControl></app-input>
