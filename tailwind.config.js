@@ -5,10 +5,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Helvetica'],
-        noe: ['noe-display', 'Helvetica']
+        sans: ['Helvetica', 'Arial', 'sans-serif'],
+        'noe': ['noe-display', 'Helvetica']
       }
     },
+    backgroundImage: {
+      'nav': 'url("/assets/img/test-background.jpg")',
+    }
   },
   variants: {
     extend: {},

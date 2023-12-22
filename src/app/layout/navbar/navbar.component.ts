@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { NavigationEnd, Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -11,5 +11,14 @@ import { RouterLink } from "@angular/router";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  public currentRoute= '';
+  constructor(
+    private readonly router: Router
+  ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
 }
