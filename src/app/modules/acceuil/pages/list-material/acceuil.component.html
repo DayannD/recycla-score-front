@@ -1,9 +1,13 @@
 <ul>
-  <li *ngFor="let material of monoMaterials" (click)="onMaterialClick(material)">
+  <li style="cursor: pointer" *ngFor="let material of monoMaterials" (click)="onMaterialClick(material)">
     {{ material.name }}
   </li>
 </ul>
 
 <div *ngIf="selectedMaterialRecyclability">
   Recyclabilité : {{ selectedMaterialRecyclability }}
+</div>
+
+<div>
+  <button routerLink="/add">add </button>
 </div>
