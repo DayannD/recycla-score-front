@@ -51,6 +51,7 @@ export class SignInComponent {
             this.route.navigate(['/acceuil']);
           }),
           catchError((error) => {
+            console.log("error",error)
             this.errorMessage = 'Login failed';
             this.openDialog(this.errorMessage);
             return of();

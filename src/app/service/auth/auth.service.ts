@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,8 @@ export class AuthService {
   }
 
   public auth(username: string, password: string) {
-    return this.http.post(`${this.urlApi}/connexion`, { username , password }, { withCredentials: true, responseType: "text" },);
+    console.log("ICI",`${this.urlApi}/connexion`, { username , password }, { withCredentials: true, responseType: "text" });
+    return this.http.post(`${this.urlApi}/connexion`, { username , password }, { withCredentials: true, responseType: "text" });
   }
 
   public register(nomUtilisateur:string, email: string, motDePasse: string) {
