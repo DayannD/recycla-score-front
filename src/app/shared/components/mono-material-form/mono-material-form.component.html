@@ -1,0 +1,14 @@
+<form [formGroup]="monoMaterialForm" (ngSubmit)="onSubmit()">
+  <label for="name">Nom :</label>
+  <input id="name" formControlName="name">
+
+  <label for="material">Matériaux :</label>
+  <select id="material" formControlName="material">
+    <option *ngFor="let material of materials" [value]="material">{{ material }}</option>
+  </select>
+
+  <label for="recyclability">Recyclabilité :</label>
+  <input id="recyclability" formControlName="recyclability">
+
+  <button type="submit" [disabled]="monoMaterialForm.invalid">Soumettre</button>
+</form>
