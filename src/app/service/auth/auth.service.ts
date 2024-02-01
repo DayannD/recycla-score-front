@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
 import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
+import { tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,6 @@ export class AuthService {
   }
 
   public logout() {
-    this.http.post(`${this.urlApi}/deconnexion`, {}, { withCredentials: true },);
+    return this.http.post(`${this.urlApi}/deconnexion`, {}, { withCredentials: true });
   }
 }

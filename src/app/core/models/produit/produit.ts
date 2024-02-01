@@ -8,7 +8,7 @@ export class Produit {
     public scoreRecyclabilite: number = 0,
     public poids: number = 0,
     public volume: number = 0,
-    public urlImage?: string,
+    public file?: string,
     public tags: EnumTags[] = []
   ) {}
 }
