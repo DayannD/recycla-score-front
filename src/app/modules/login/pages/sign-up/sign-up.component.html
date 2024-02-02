@@ -1,4 +1,4 @@
-<div class="container">
+<div class="contenue">
   <div class="img">
   </div>
   <div class="right-block">
@@ -16,8 +16,18 @@
         <form class="form form-control" [formGroup]="authForm" (ngSubmit)="onSubmit()">
           <div class="input">
             <div>
+              <app-input cssLabel="label" css="champ" type="text" name="Name user"
+                         label="Name" [formControl]="nameUserControl"  [model]="user.nomUtilisateur" ngDefaultControl>
+              </app-input>
+            </div>
+            <div *ngIf="nameUserControl.invalid && (nameUserControl.dirty || nameUserControl.touched)">
+              <div class="wrong" *ngIf="nameUserControl.hasError('required')">
+                Le champ est obligatoire.
+              </div>
+            </div>
+            <div>
               <app-input cssLabel="label" css="champ" type="text" name="email"
-                         label="Email or phone number" [formControl]="emailControl" [model]="auth.email" ngDefaultControl>
+                         label="Email or phone number" [formControl]="emailControl" [model]="user.email" ngDefaultControl>
               </app-input>
             </div>
             <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
@@ -33,16 +43,16 @@
             </div>
             <div>
               <app-input cssLabel="label" css="champ" type="password" name="email"
-                         label="Password" [formControl]="passwordControl"  [model]="auth.password" ngDefaultControl>
+                         label="Password" [formControl]="passwordControl"  [model]="user.motDePasse" ngDefaultControl>
               </app-input>
-            </div>
-          </div>
-          <div *ngIf="passwordControl.invalid && (emailControl.dirty || emailControl.touched)">
-            <div class="wrong" *ngIf="passwordControl.hasError('required')">
-              Le champ est obligatoire.
-            </div>
-            <div class="wrong" *ngIf="passwordControl.hasError('minlength')">
-              Le champ doit avoir au moins 6 caractères.
+              <div *ngIf="passwordControl.invalid && (emailControl.dirty || emailControl.touched)">
+                <div class="wrong" *ngIf="passwordControl.hasError('required')">
+                  Le champ est obligatoire.
+                </div>
+                <div class="wrong" *ngIf="passwordControl.hasError('minlength')">
+                  Le champ doit avoir au moins 6 caractères.
+                </div>
+              </div>
             </div>
           </div>
           <div class="connexion">
@@ -52,7 +62,7 @@
             </div>
             <!-- /********************** btn **********************/ -->
           </div>
-          <app-btn (clickEmitter)="click()" [css]="'btn'" [name]="'Inscription'"></app-btn>
+          <app-btn (clickEmitter)="onSubmit()" [css]="'btn'" [name]="'Inscription'"></app-btn>
         </form>
       </div>
       <!-- /********************** logo **********************/ -->

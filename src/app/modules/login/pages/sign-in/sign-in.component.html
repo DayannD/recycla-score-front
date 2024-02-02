@@ -1,4 +1,4 @@
-<div class="container">
+<div class="contenue">
   <div class="img">
   </div>
   <div class="right-block">
@@ -14,7 +14,7 @@
         </div>
         <!-- /********************** form **********************/ -->
         <form class="form form-control" [formGroup]="authForm" (ngSubmit)="onSubmit()">
-          <div class="input">
+          <div>
             <div>
               <app-input cssLabel="label" css="champ" type="text" name="email"
                          label="Email or phone number" [formControl]="emailControl" [model]="auth.email" ngDefaultControl>
@@ -53,7 +53,7 @@
             <a routerLink="/forgot-password" class="forgot"><span>Forgot password?</span></a>
             <!-- /********************** btn **********************/ -->
           </div>
-          <app-btn (clickEmitter)="click()" [css]="'btn'" [name]="'Sign in'"></app-btn>
+          <app-btn (clickEmitter)="onSubmit()" [css]="'btn'" [name]="'Sign in'"></app-btn>
         </form>
 
         <hr width="100%" color="#E5E5E5">

@@ -1,3 +1,5 @@
+import { EnumTags } from "../enum/enum-tags";
+
 export class Produit {
   constructor(
     public id?: number,
@@ -6,6 +8,7 @@ export class Produit {
     public scoreRecyclabilite: number = 0,
     public poids: number = 0,
     public volume: number = 0,
-    public urlImage?: string,
+    public file?: string,
+    public tags: EnumTags[] = []
   ) {}
 }

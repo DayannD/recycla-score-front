@@ -1,27 +1,43 @@
 // src/app/components/acceuil/acceuil.component.ts
-import { Component, OnInit } from '@angular/core';
-import {MonoMaterial} from "../../../../core/models/mono-material/mono-material";
-import {MonoMaterialService} from "../../../../core/services/mono-material/mono-material.service";
+import { Component } from '@angular/core';
+import { ProduitService } from "../../../../service/materiaux/produit.service";
+
 
 @Component({
   selector: 'app-acceuil',
   templateUrl: './acceuil.component.html',
   styleUrls: ['./acceuil.component.css']
 })
-export class AcceuilComponent implements OnInit {
+export class AcceuilComponent {
+  public tag = 'GLASS';
+  public produits$;
 
-  monoMaterials: MonoMaterial[] = [];
-  selectedMaterialRecyclability: string | null = null;
-
-  constructor(private monoMaterialService: MonoMaterialService) { }
-
-  ngOnInit(): void {
-    this.monoMaterialService.getMonoMaterials().subscribe(materials => {
-      this.monoMaterials = materials;
-    });
+  constructor(
+    private readonly produitService: ProduitService
+  ) {
+    this.produits$ = this.produitService.getProduits(this.tag);
   }
 
-  onMaterialClick(material: MonoMaterial): void {
-    this.selectedMaterialRecyclability = material.recyclability;
+  onTagSelected(tag: string): void {
+    this.tag = tag;
+      this.produits$ = this.produitService.getProduits(this.tag);
+  }
+
+  getImageSrc(byteString: string | undefined): string {
+    if (!byteString) {
+      return '';
+    }
+
+    return 'data:image/' + this.getMimeType(byteString) + ';base64,' + byteString;
+  }
+
+  getMimeType(dataUrl: string): string {
+    let splitDataUrl = dataUrl.split(',');
+    if (splitDataUrl.length < 2) {
+      return '';
+    }
+
+    let mimeType = splitDataUrl[0].split(':')[1].split(';')[0];
+    return mimeType;
   }
 }

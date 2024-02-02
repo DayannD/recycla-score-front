@@ -1,0 +1,60 @@
+@if (this.currentRoute === '/acceuil') {
+  <div class="bg-nav bg-cover bg-center h-96 border-b-8 rounded-b-2xl">
+    <nav
+      class="flex items-center justify-between w-full top-0 start-0">
+      <div class="flex items-center">
+        <img class="ml-5" src="assets/img/logo.png">
+        <div class="flex m-5  flex-col">
+          <h1 class="font-bold text-[#cff09e]">Green Earth</h1>
+          <p class="text-amber-50">Séparez aujourd'hui,préservez demain.</p>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <ul class="flex space-x-4">
+          <li><a class="text-[#cff09e] hover:underline" routerLink="/acceuil">Acceuil</a></li>
+          <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Contact</a></li>
+          <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Mono-matériaux</a></li>
+        </ul>
+        <div class="space-x-4">
+          <div class="dropdown dropdown-bottom">
+            <div tabindex="0" role="button" class="text-[#cff09e] hover:underline m-3">Account</div>
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+              <li><a routerLink="/contact">Test</a></li>
+              <li (click)="deconnexion()">Deconnexion</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex">
+          <a class="ml-5 transition delay-150 duration-300 ease-in-out hover:rotate-45 hover:-scale-y-100"
+             href="index.php?page=cart"><img src="assets/img/instagram.png"></a>
+          <a class="ml-5 mr-5 transition delay-150 duration-300 ease-in-out hover:rotate-45 hover:-scale-y-100"
+             href="index.php?page=login"><img src="assets/img/linkedin.png"></a>
+        </div>
+      </div>
+    </nav>
+  </div>
+} @else {
+  <nav
+    class="flex items-center justify-between bg-nav bg-cover bg-center w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="flex items-center ">
+      <img src="assets/img/logo.png">
+      <div class="flex m-5  flex-col">
+        <h1 class="font-bold text-[#cff09e]">Green Earth</h1>
+        <p class="text-amber-50">Séparez aujourd'hui,préservez demain.</p>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <ul class="flex space-x-4">
+        <li><a class="text-[#cff09e] hover:underline" routerLink="/acceuil">Acceuil</a></li>
+        <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Contact</a></li>
+      </ul>
+      <div class="flex">
+        <a class="ml-5 transition delay-150 duration-300 ease-in-out hover:rotate-45 hover:-scale-y-100" href="#"><img
+          src="assets/img/instagram.png"></a>
+        <a class="ml-5 mr-5 transition delay-150 duration-300 ease-in-out hover:rotate-45 hover:-scale-y-100"
+           href="#"><img src="assets/img/linkedin.png"></a>
+      </div>
+    </div>
+  </nav>
+}
+
