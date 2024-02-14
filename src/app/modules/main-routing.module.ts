@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AcceuilComponent } from "./acceuil/pages/list-material/acceuil.component";
+import { AcceuilComponent } from "./acceuil/pages/acceuil/acceuil.component";
 
 const routes: Routes = [
   {
-    path: '',
-    component: AcceuilComponent,
-  },
-  {
     path: 'acceuil',
-    loadChildren: () => import('./acceuil/mono-material.module').then(m => m.MonoMaterialModule)
+    loadChildren: () => import('./acceuil/acceuil.module').then(m => m.AcceuilModule)
   },
   {
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
   },
+  {
+    path: 'mono-material',
+    loadChildren: () => import('./acceuil/acceuil.module').then(m => m.AcceuilModule)
+  }
 ];
 
 @NgModule({

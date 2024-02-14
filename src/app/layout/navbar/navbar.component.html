@@ -13,14 +13,17 @@
         <ul class="flex space-x-4">
           <li><a class="text-[#cff09e] hover:underline" routerLink="/acceuil">Acceuil</a></li>
           <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Contact</a></li>
-          <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Mono-matériaux</a></li>
+          <li><a class="text-[#cff09e] hover:underline" routerLink="/acceuil/mono-material">Mono-matériaux</a></li>
         </ul>
         <div class="space-x-4">
           <div class="dropdown dropdown-bottom">
             <div tabindex="0" role="button" class="text-[#cff09e] hover:underline m-3">Account</div>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
               <li><a routerLink="/contact">Test</a></li>
-              <li (click)="deconnexion()">Deconnexion</li>
+              <li (click)="deconnexion()"><a>Deconnexion</a></li>
+              @if (isAdmin()) {
+                <li><a routerLink="/admin">Admin</a></li>
+              }
             </ul>
           </div>
         </div>
@@ -45,9 +48,22 @@
     </div>
     <div class="flex items-center">
       <ul class="flex space-x-4">
-        <li><a class="text-[#cff09e] hover:underline" routerLink="/acceuil">Acceuil</a></li>
-        <li><a class="text-[#cff09e] hover:underline" routerLink="/contact">Contact</a></li>
+        <li *ngIf="this.currentRoute !== '/acceuil'"><a class="text-[#cff09e] hover:underline" routerLink="/acceuil">Acceuil</a></li>
+        <li *ngIf="this.currentRoute !== '/acceuil/mono-material'"><a class="text-[#cff09e] hover:underline" routerLink="acceuil/mono-material">Mono-matériaux</a></li>
+        <li *ngIf="this.currentRoute !== '/contact'"><a class="text-[#cff09e] hover:underline" routerLink="/contact">Contact</a></li>
       </ul>
+      <div class="space-x-4">
+        <div class="dropdown dropdown-bottom">
+          <div tabindex="0" role="button" class="text-[#cff09e] hover:underline m-3">Account</div>
+          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a routerLink="/contact">Test</a></li>
+            <li  (click)="deconnexion()"><a>Deconnexion</a></li>
+            @if (isAdmin()) {
+              <li *ngIf="this.currentRoute !== '/admin'"><a routerLink="/admin">Admin</a></li>
+            }
+          </ul>
+        </div>
+      </div>
       <div class="flex">
         <a class="ml-5 transition delay-150 duration-300 ease-in-out hover:rotate-45 hover:-scale-y-100" href="#"><img
           src="assets/img/instagram.png"></a>

@@ -1,0 +1,16 @@
+<div *ngIf="produit$ | async as produit">
+  <h2 class="flex justify-center m-3">{{ produit.nomProduit }}</h2>
+  <div class="flex justify-center m-10">
+    <div class="artboard phone-1 justify-center">
+      <img [src]="getImageSrc(produit.file)" />
+    </div>
+    <div>
+      <p>{{ produit.description }}</p>
+      <p>{{ produit.scoreRecyclabilite }}</p>
+      <p>{{ produit.poids }}</p>
+      <p>{{ produit.volume}}</p>
+      <h5>Matériaux présent dans le produit</h5>
+      <app-table [datas]="produit.materiaux!" [columns]="columnsMateriau" [canModify]="false"></app-table>
+    </div>
+  </div>
+</div>

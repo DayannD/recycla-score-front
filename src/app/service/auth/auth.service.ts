@@ -3,6 +3,8 @@ import { environment } from "../../environments/environment";
 import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
 import { tap } from "rxjs";
+import { jwtDecode } from "jwt-decode";
+import { DecodedToken } from "../../core/models/decoded-token/decoded-token";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,24 @@ export class AuthService {
     const token = this.cookieService.get('token');
 
     return !!token;
+  }
+
+  public forgotPassword(email: string) {
+    return this.http.post(`${this.urlApi}/mot-de-passe-oublie`, { email }, { withCredentials: true });
+  }
+
+  public getTokens() {
+    return this.cookieService.get('token');
+  }
+
+  public isAdmin() {
+    const token = this.getTokens();
+    if (!token) {
+      return false;
+    }
+
+    const decodedToken = jwtDecode(token) as DecodedToken;
+    return decodedToken.role === 'ADMIN';
   }
 
   public logout() {

@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<h2 class="text-center underline font-bold m-3">Produit</h2>
+<div *ngIf="produits$ | async as produits">
+  <app-table [datas]="produits" [columns]="columnsProduits" [link]="'/admin/add-produit'"></app-table>
+</div>
+<h2 class="text-center underline font-bold m-3">Matériaux</h2>
+<div *ngIf="materiaux$ | async as materiaux">
+  <app-table [datas]="materiaux" [columns]="columnsMateriaux" [link]="'/admin/add-materiau'"></app-table>
+</div>
+<h2 class="text-center underline font-bold m-3">Mono-matérials</h2>
+<div *ngIf="monoMaterial$ | async as monomateriaux">
+  <app-table [datas]="monomateriaux" [columns]="columnsMonoMaterial" [link]="'/admin/add-mono-materials'"></app-table>
+</div>

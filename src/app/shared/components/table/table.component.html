@@ -1,0 +1,40 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <!-- head -->
+    <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{ column.title }}</th>
+      <th *ngIf="canModify">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- row 1 -->
+    <tr *ngFor="let data of datas" >
+      <td *ngFor="let column of columns">
+        @if (column.key.startsWith('materiauxDTO.')) {
+          {{ getCellData(data, column.key) }}
+        } @else {
+          @switch (column.key) {
+            @case('file') {
+              <img [src]="getImageSrc(data[column.key])" alt="file" class="w-12 h-12">
+            }
+            @case('tags') {
+              <span *ngFor="let tag of data[column.key]" class="badge">{{ tag }}</span>
+            }
+            @default {
+              {{ data[column.key] }}
+            }
+          }
+        }
+      </td>
+      <td *ngIf="canModify">
+        <div class="flex justify-center space-x-2">
+          <button class="btn btn-primary" >Edit</button>
+          <button class="btn btn-error" >Delete</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button *ngIf="canModify" class="btn btn-success m-3"><a routerLink="{{ link }}">add</a></button>
+</div>

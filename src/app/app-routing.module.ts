@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/main.module').then(m => m.MainModule)
   },
   {
+    path: 'admin',
+    canActivate: [authGuard],
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

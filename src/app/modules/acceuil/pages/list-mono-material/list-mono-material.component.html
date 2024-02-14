@@ -1,0 +1,4 @@
+<h2 class="text-center underline font-bold m-3">Mono-matérials</h2>
+<div *ngIf="monoMaterial$ | async as monomateriaux">
+  <app-table [canModify]="false" [datas]="monomateriaux" [columns]="columnsMonoMaterial" [link]="'/admin/add-mono-materials'"></app-table>
+</div>

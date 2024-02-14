@@ -15,7 +15,11 @@ export class MonoMaterialService {
     this.apiUrl = environment.urlApi;
   }
 
-  getMonoMaterials(): Observable<MonoMaterial[]> {
+  getAllMonoMaterials(): Observable<MonoMaterial[]> {
     return this.http.get<MonoMaterial[]>(this.apiUrl + '/api/monomaterial', { withCredentials: true });
+  }
+
+  addMonoMaterial(monoMaterial: MonoMaterial): Observable<void> {
+    return this.http.post<void>(this.apiUrl + '/api/admin/mono-material', monoMaterial, { withCredentials: true });
   }
 }

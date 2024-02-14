@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {EnumMonoMaterial} from "../../../core/models/enum/enum-mono-material";
-import {MonoMaterialService} from "../../../core/services/mono-material/mono-material.service";
 import {MaterialMappingService} from "../../services/material-mapping.service";
 import {Router} from "@angular/router";
+import { MonoMaterialService } from "../../../service/mono-material/mono-material.service";
 
 @Component({
   selector: 'app-mono-material-form',
@@ -36,7 +36,7 @@ export class MonoMaterialFormComponent {
       const formValue = this.monoMaterialForm.value;
       formValue.material = this.materialMapping.getEnumValue(formValue.material);
       this.monoMaterialService.addMonoMaterial(formValue).subscribe();
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/admin");
     }
   }
 
