@@ -22,4 +22,16 @@ export class MonoMaterialService {
   addMonoMaterial(monoMaterial: MonoMaterial): Observable<void> {
     return this.http.post<void>(this.apiUrl + '/api/admin/mono-material', monoMaterial, { withCredentials: true });
   }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(this.apiUrl + `/api/admin/mono-material/${id}`, { withCredentials: true });
+  }
+
+  getOneMonoMaterial(id: number): Observable<MonoMaterial> {
+    return this.http.get<MonoMaterial>(this.apiUrl + `/api/monomaterial/${id}`, { withCredentials: true });
+  }
+
+  updateMonoMaterial(monoMaterial: MonoMaterial): Observable<void> {
+    return this.http.put<void>(this.apiUrl + `/api/admin/mono-material`, monoMaterial, { withCredentials: true });
+  }
 }

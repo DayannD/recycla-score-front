@@ -2,9 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
 import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
-import { tap } from "rxjs";
+import { switchMap, tap } from "rxjs";
 import { jwtDecode } from "jwt-decode";
 import { DecodedToken } from "../../core/models/decoded-token/decoded-token";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
   private cookieService = inject(CookieService)
   constructor(
     private readonly http: HttpClient,
+    private readonly router: Router
   ) {
     this.urlApi = environment.urlApi;
   }
@@ -37,8 +39,25 @@ export class AuthService {
     return this.http.post(`${this.urlApi}/mot-de-passe-oublie`, { email }, { withCredentials: true });
   }
 
+  public refreshToken() {
+    const token = this.getTokens();
+    console.log("Token", token);
+    console.log("token", { token })
+    this.removeTokens();
+    console.log('check: ',this.cookieService.check('token'))
+    return this.http.post<string>(`${this.urlApi}/refresh-token`, { token }, { withCredentials: true }).pipe(
+      tap(() => {
+        this.router.navigateByUrl('/', { skipLocationChange: true })
+      }
+    ));
+  }
+
   public getTokens() {
     return this.cookieService.get('token');
+  }
+
+  public removeTokens() {
+    this.cookieService.delete('token');
   }
 
   public isAdmin() {

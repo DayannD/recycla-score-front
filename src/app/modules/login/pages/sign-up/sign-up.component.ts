@@ -51,7 +51,7 @@ export class SignUpComponent {
         .register(this.authForm.value.nameUser, this.authForm.value.email, this.authForm.value.password)
         .pipe(
           tap((res) => {
-            this.openDialog('Inscription réussie, un email de confirmation vous a été envoyé');
+            this.openDialog('Inscription réussie, un from de confirmation vous a été envoyé');
             this.route.navigate(['/']);
           }),
           catchError((error) => {

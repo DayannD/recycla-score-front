@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { Materiaux } from "../../core/models/materiaux/materiaux";
 import { Produit } from "../../core/models/produit/produit";
-import { EnumTags } from "../../core/models/enum/enum-tags";
 import { InfosProduit } from "../../core/models/infos-produit/infos-produit";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitService {
-  private apiUrl: string;
+  private readonly apiUrl: string;
 
   constructor(private http: HttpClient) {
     this.apiUrl = environment.urlApi;
@@ -25,5 +23,13 @@ export class ProduitService {
 
   public getAllProduits() {
     return this.http.get<Produit[]>(this.apiUrl + `/api/produit/all`, { withCredentials: true });
+  }
+
+  addProduit(formValue: Produit) {
+    return this.http.post(this.apiUrl + '/api/admin/produit', formValue, { withCredentials: true });
+  }
+
+  public deleteById(id: number) {
+    return this.http.delete(this.apiUrl + `/api/admin/produit/${id}`, { withCredentials: true });
   }
 }

@@ -29,8 +29,8 @@
       </td>
       <td *ngIf="canModify">
         <div class="flex justify-center space-x-2">
-          <button class="btn btn-primary" >Edit</button>
-          <button class="btn btn-error" >Delete</button>
+          <button class="btn btn-primary" (click)="editById(data.id)"><a>Edit</a></button>
+          <button class="btn btn-error" (click)="getId(data.id)">Delete</button>
         </div>
       </td>
     </tr>

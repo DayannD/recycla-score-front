@@ -20,7 +20,7 @@
         <app-input [type]="'text'" [css]="'champ'" [label]="'Name'" [model]="mail.name" [formControl]="nameControl" ngDefaultControl></app-input>
       </div>
       <div>
-        <app-input [type]="'text'" [css]="'champ'" [label]="'Email'" [model]="mail.email" [formControl]="emailControl" ngDefaultControl></app-input>
+        <app-input [type]="'text'" [css]="'champ'" [label]="'Email'" [model]="mail.from" [formControl]="fromControl" ngDefaultControl></app-input>
       </div>
       <div>
         <app-input [type]="'enum'" [css]="'champ'" [label]="'Objet de votre mail'" [model]="mail.object" [formControl]="objectControl" [enumOptions]="enumOptions" ngDefaultControl></app-input>
@@ -30,5 +30,6 @@
       </div>
       <app-btn [css]="'black'" [name]="'Submit'"></app-btn>
     </form>
+      <mat-spinner *ngIf="loading"></mat-spinner>
   </div>
 </div>

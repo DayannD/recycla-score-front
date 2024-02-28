@@ -1,9 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { MonoMaterial } from "../../../core/models/mono-material/mono-material";
+import { Component, EventEmitter, Input , OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { AsyncPipe, JsonPipe, KeyValuePipe, NgForOf, NgIf } from "@angular/common";
-import { EnumTags } from "../../../core/models/enum/enum-tags";
-import { EnumMonoMaterial } from "../../../core/models/enum/enum-mono-material";
 import { CommonService } from "../../../service/common/common.service";
 
 @Component({

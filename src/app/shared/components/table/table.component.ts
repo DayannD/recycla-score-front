@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Produit } from "../../../core/models/produit/produit";
 import { Materiaux } from "../../../core/models/materiaux/materiaux";
 import { MonoMaterial } from "../../../core/models/mono-material/mono-material";
@@ -17,23 +17,27 @@ import { RouterLink } from "@angular/router";
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit {
   @Input() datas!: any[];
   @Input() columns: { key: string, title: string }[] = [];
   @Input() link = '';
   @Input() canModify = true;
+
+  @Output() deleteId: EventEmitter<number> = new EventEmitter<number>();
+  @Output() editId: EventEmitter<number> = new EventEmitter<number>();
+
   constructor() {
     // console.log("test", this.data)
   }
 
   ngOnInit(): void {
-    console.log("columns",this.columns);
-console.log("datas",this.datas);
+    console.log("columns", this.columns);
+    console.log("datas", this.datas);
 
     for (let data of this.datas) {
-      console.log("data",data);
+      console.log("data", data);
       for (let column of this.columns) {
-        console.log("column",column.key);
+        console.log("column", column.key);
         console.log(data[column.key]);
       }
     }
@@ -41,8 +45,8 @@ console.log("datas",this.datas);
 
   getCellData(data: any, columnKey: string): any {
     const keys = columnKey.split('.');
-    console.log("KEYS",columnKey);
-    console.log("JE SUIS RENTRER",data.materiauxDTO[keys[0]])
+    console.log("KEYS", columnKey);
+    console.log("JE SUIS RENTRER", data.materiauxDTO[keys[0]])
     let value = data;
     for (const key of keys) {
       if (value[key] !== undefined) {
@@ -56,7 +60,7 @@ console.log("datas",this.datas);
 
   splitColumn(data: string): string {
     const materiauxSplit = data.split('.');
-    console.log("materiauxSplit",materiauxSplit[0]);
+    console.log("materiauxSplit", materiauxSplit[0]);
     return materiauxSplit[0];
   }
 
@@ -78,4 +82,12 @@ console.log("datas",this.datas);
     return mimeType;
   }
 
+  getId(id: number) {
+    this.deleteId.emit(id);
+  }
+
+  editById(id: number) {
+    console.log("ID", id)
+    this.editId.emit(id);
+  }
 }
