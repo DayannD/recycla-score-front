@@ -31,22 +31,10 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("columns", this.columns);
-    console.log("datas", this.datas);
-
-    for (let data of this.datas) {
-      console.log("data", data);
-      for (let column of this.columns) {
-        console.log("column", column.key);
-        console.log(data[column.key]);
-      }
-    }
   }
 
   getCellData(data: any, columnKey: string): any {
     const keys = columnKey.split('.');
-    console.log("KEYS", columnKey);
-    console.log("JE SUIS RENTRER", data.materiauxDTO[keys[0]])
     let value = data;
     for (const key of keys) {
       if (value[key] !== undefined) {
@@ -60,7 +48,6 @@ export class TableComponent implements OnInit {
 
   splitColumn(data: string): string {
     const materiauxSplit = data.split('.');
-    console.log("materiauxSplit", materiauxSplit[0]);
     return materiauxSplit[0];
   }
 
